@@ -8,7 +8,7 @@ public class ItemListeners implements ItemListener<String> {
 
     @Override
     public void itemAdded(ItemEvent<String> itemEvent) {
-        System.out.println("Item Added");
+        System.out.println("Item Added "+ itemEvent.getItem());
     }
 
     @Override
