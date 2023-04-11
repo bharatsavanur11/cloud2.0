@@ -7,10 +7,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
 import java.util.List;
 
 @Controller("/hz")
@@ -18,6 +20,7 @@ import java.util.List;
 public class HazelcastController {
 
     private HazelcastService hazelcastService;
+
 
     @Autowired
     public HazelcastController(HazelcastService hazelcastService) {
@@ -35,6 +38,12 @@ public class HazelcastController {
     @ResponseBody
     public void saveQuote(@RequestBody List<Quote> quotes) throws InterruptedException {
         hazelcastService.saveQuotes(quotes);
+    }
+
+    @GetMapping("/getQuotes")
+    @ResponseBody
+    public Collection<Object> getQuote() throws InterruptedException {
+        return hazelcastService.findAllQuotes();
     }
 
 }

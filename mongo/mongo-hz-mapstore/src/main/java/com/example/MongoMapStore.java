@@ -2,8 +2,9 @@ package com.example;
 
 import com.example.business.Quote;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.MapLoaderLifecycleSupport;
-import com.hazelcast.map.MapStore;
+
+import com.hazelcast.core.MapLoaderLifecycleSupport;
+import com.hazelcast.core.MapStore;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
@@ -19,7 +20,7 @@ import java.util.Map;
 import java.util.Properties;
 
 
-public class MongoMapStore implements MapStore<String, Quote> , MapLoaderLifecycleSupport {
+public class MongoMapStore implements MapStore<String, Quote>, MapLoaderLifecycleSupport {
 
     private MongoTemplate mongoTemplate;
 

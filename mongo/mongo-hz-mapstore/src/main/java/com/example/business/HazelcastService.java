@@ -4,6 +4,7 @@ import com.hazelcast.core.HazelcastInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -19,5 +20,9 @@ public class HazelcastService {
     public void saveQuotes(List<Quote> quotes) {
         quotes.forEach(quote-> hazelcastInstance.getMap("quotes").put(quote.getId(),quote));
 
+    }
+
+    public Collection<Object> findAllQuotes() {
+        return hazelcastInstance.getMap("quotes").values();
     }
 }
