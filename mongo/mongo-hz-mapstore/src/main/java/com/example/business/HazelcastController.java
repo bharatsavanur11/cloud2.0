@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ *   This class deals with Hazelcast Service
+ *
+ */
 @Controller("/hz")
 @Tag(description = "Hazelcast Controller API", name = "Hazelcast Services To Demo Write Through Cache")
 public class HazelcastController {
