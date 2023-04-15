@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Websockets and RSockets
+ Real Time end to end implementation of websockets.
