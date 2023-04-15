@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Data. Structures
+ Collection and Implementation of High Level Data Structures 
