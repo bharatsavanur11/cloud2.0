@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# React UI
+ Sample POC's for React Implementation

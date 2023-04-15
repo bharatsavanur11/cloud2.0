@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Redis Tricks
+Sample POC's and Redis Tricks before official Implementation

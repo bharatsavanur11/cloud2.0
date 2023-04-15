@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Python Apps
+ All About Python POC's on the way to data journey

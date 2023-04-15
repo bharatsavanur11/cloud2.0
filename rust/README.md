@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Rust it is!!
+ Sample rust implementation and applications
