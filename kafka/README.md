@@ -1,2 +1,2 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Kafka
+ Kafka POC's and sample programs along wih documentation 
