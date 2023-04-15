@@ -1,2 +1,2 @@
 # Reactive Programming
-  End to end reactive implementation of the data
+  End to end reactive implementation from UI to Backend
