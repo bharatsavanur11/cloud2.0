@@ -1,2 +1,3 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Data POC's
+
+POC and design Choices for data intensive applications
