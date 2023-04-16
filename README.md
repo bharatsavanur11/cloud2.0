@@ -1,2 +1,2 @@
 # Cloud Phase - 2.0
-Architecture Design and POC Learnings with ofcourse Technology Implementations !!
+Architecture, Design, Solutions and  Learnings with ofcourse POC Technology Implementations !!

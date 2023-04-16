@@ -1,6 +1,5 @@
 package com.example.kafkademo;
 
-import com.example.kafkademo.Producer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,8 @@ public class KafkaDemoApplication {
 
     private  Producer producer;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
+        args=new String[]{"--producer","--consumer"};
         SpringApplication application = new SpringApplication(KafkaDemoApplication.class);
         application.setWebApplicationType(WebApplicationType.NONE);
         application.run(args);
