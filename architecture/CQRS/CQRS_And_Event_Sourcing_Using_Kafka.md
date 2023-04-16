@@ -31,6 +31,10 @@ But there are some drawbacks as well:
 
 The high level architecture for any CQRS system using Kafka is shown below:
 
+![](https://github.com/kgrzybek/sample-dotnet-core-cqrs-api/workflows/Build%20Pipeline/badge.svg)
+
+
+
 
 All othe above drawbacks can be handled using standardized coding standards and few retry jobs. The next part of document handles the very same thing.
 
