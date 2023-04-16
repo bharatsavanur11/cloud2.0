@@ -31,7 +31,7 @@ But there are some drawbacks as well:
 
 The high level architecture for any CQRS system using Kafka is shown below:
 
-![](https://github.com/kgrzybek/sample-dotnet-core-cqrs-api/workflows/Build%20Pipeline/badge.svg)
+![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
 
 
 
