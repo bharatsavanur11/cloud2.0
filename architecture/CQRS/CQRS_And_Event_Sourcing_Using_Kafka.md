@@ -46,7 +46,7 @@ Let's understand what can go wrong:
    2. Once the message is sent, the database update fails on producer.
    3. Once the message is read, the consumer throws an error.
    4. Consumer fails to acknowledge the read message.
-   5  The same message is replayed due to offset change/ or some admin error
+   5. The same message is replayed due to offset change/ or some admin error
 
 How to mitigate the above issues:
 
