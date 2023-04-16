@@ -6,18 +6,17 @@ One of the approaches to solve the above problem is using CQRS. CQRS stands for 
 command - write/update statemenets are executed on a separate database and 
 while Query - read statements are executed  on another database.
 
-How it works:
-The high level architecture for any CQRS system using Kafka is shown below:
-![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
-
 How Kafka is advantageous:
    1. The major advantage of kafka is  load bearing capacity.
    2. Due to it being immutable append only log, the changes are always present
    3. Ability to move back and forth becomes advantegous.
    4. Using GroupId's message can be read only once for a group of applications.
    5. Multiple ReadOnly Consumers(Query Pattern) can be updated depending upon the requirement.
+   
+The high level architecture for any CQRS system using Kafka is shown below:
+![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
 
-This leads to the writes not blocking your read and vice-versa. Immediately we see so many advantages. Let's list them down:
+This above architecture makes sure writes not blocking your read and vice-versa. Immediately we see so many advantages. Let's list them down:
 
    1. Design your write database without concerning how it is going to be read.
    2. No table/row level lock needs to be established.
@@ -36,8 +35,6 @@ But there are some drawbacks as well:
    6. The read database needs to be written with IDEMPOTENCY of data in     
       place(if the same message is replayed, the effect should be exactly same).
 
-The high level architecture for any CQRS system using Kafka is shown below:
-![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
 
 
 
