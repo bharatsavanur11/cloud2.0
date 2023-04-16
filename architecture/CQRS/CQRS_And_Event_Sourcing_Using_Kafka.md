@@ -30,9 +30,7 @@ But there are some drawbacks as well:
       place(if the same message is replayed, the effect should be exactly same).
 
 The high level architecture for any CQRS system using Kafka is shown below:
-
 ![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
-
 
 
 
@@ -66,7 +64,7 @@ How to mitigate the above issues:
       databases is required.
 
 
-As it can be seen, when implementing CQRS at scale, certain coding standards need to be followed. A common standard framework , common kafka standards, number of partitions and listeners if implemented at project level becomes extremely important.
+As it can be seen, when implementing CQRS at scale, certain coding standards need to be followed. Setting up of common standard framework , common kafka standards, number of partitions and listeners s at project level becomes extremely important.
 
 
 
