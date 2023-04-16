@@ -7,8 +7,15 @@ command - write/update statemenets are executed on a separate database and
 while Query - read statements are executed  on another database.
 
 How it works:
+The high level architecture for any CQRS system using Kafka is shown below:
+![](https://github.com/bharatsavanur11/cloud2.0/blob/main/architecture/CQRS/CQRS.jpg)
 
 How Kafka is advantageous:
+   1. The major advantage of kafka is  load bearing capacity.
+   2. Due to it being immutable append only log, the changes are always present
+   3. Ability to move back and forth becomes advantegous.
+   4. Using GroupId's message can be read only once for a group of applications.
+   5. Multiple ReadOnly Consumers(Query Pattern) can be updated depending upon the requirement.
 
 This leads to the writes not blocking your read and vice-versa. Immediately we see so many advantages. Let's list them down:
 
