@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
+@RequestMapping("/fakeData")
 @Tag(description = "Faker API", name = "Faker Services")
 public class FakerController {
 
@@ -33,7 +35,7 @@ public class FakerController {
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = Quote.class)))
             })
-    @GetMapping("/getQuotes")
+    @GetMapping("/generateFakerPersonData")
     @ResponseBody
     public List<Person> getPersonList(@RequestParam  int count) throws InterruptedException {
         // use slf4k logger for better performance
