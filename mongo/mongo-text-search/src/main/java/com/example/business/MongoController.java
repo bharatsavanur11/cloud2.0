@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 @Controller
-@Tag(description = "User API", name = "User Services")
+@Tag(description = "Quote API", name = "Quote Services")
 public class MongoController {
 
     @Autowired
@@ -60,6 +60,19 @@ public class MongoController {
     @ResponseBody
     public List<String> searchFreeFlowText(@RequestParam String field, @RequestParam String searchText) throws InterruptedException {
         return mongoService.fetchMatchingSearchByFilterCriteria(field,searchText,"listingsAndReviews");
+    }
+
+    @Operation(summary = "Save the Quotes for Books", tags = {"Quotes",},
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "Returns the registered user",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Quote.class)))
+            })
+    @GetMapping("/performFullTextSearch")
+    @ResponseBody
+    public List<String> performFullTextSearchOnPersonCollection(@RequestParam String textToBeSearched) throws InterruptedException {
+        return mongoService.fetchSearchTextData(textToBeSearched);
     }
 
 

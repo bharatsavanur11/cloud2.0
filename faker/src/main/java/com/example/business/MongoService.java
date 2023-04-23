@@ -4,8 +4,13 @@ import com.example.MongoConfig;
 import com.hazelcast.com.google.common.collect.Lists;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Indexes;
+import com.mongodb.client.model.TextSearchOptions;
 import io.micrometer.core.instrument.LongTaskTimer;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -61,7 +66,12 @@ public class MongoService {
     }
 
     public List<String> fetchSearchTextData(String text) {
-
+        MongoCollection personCollection =  mongoTemplate.getCollection("person");
+        String resultCreateIndex = personCollection.createIndex(Indexes.text("fullName"));
+        TextSearchOptions options = new TextSearchOptions().caseSensitive(false);
+        System.out.println(String.format("Index created: %s", resultCreateIndex));
+        Bson filter = Filters.text("John", options);
+        personCollection.find(filter).forEach(doc->System.out.println(doc));
         return Lists.newArrayList();
     }
 }

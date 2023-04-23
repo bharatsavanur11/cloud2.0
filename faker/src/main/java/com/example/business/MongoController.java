@@ -62,6 +62,19 @@ public class MongoController {
         return mongoService.fetchMatchingSearchByFilterCriteria(field,searchText,"listingsAndReviews");
     }
 
+    @Operation(summary = "Save the Quotes for Books", tags = {"Quotes",},
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "Returns the registered user",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Quote.class)))
+            })
+    @GetMapping("/performFullTextSearch")
+    @ResponseBody
+    public List<String> performFullTextSearchOnPersonCollection(@RequestParam String textToBeSearched) throws InterruptedException {
+        return mongoService.fetchSearchTextData(textToBeSearched);
+    }
+
 
 
     @Operation(summary = "Save the Quotes for Books", tags = {"Quotes",},
