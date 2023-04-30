@@ -1,2 +1,2 @@
 # Cloud Phase - 2.0
-Architecture, Design, Solutions and  Learnings with ofcourse POC Technology Implementations !!
+Architecture, Design, Solutions and  Learnings All that i do AOT!!!
