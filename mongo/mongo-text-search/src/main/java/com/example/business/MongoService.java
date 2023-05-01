@@ -1,6 +1,7 @@
 package com.example.business;
 
 import com.example.MongoConfig;
+import com.example.model.Person;
 import com.hazelcast.com.google.common.collect.Lists;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
@@ -10,16 +11,23 @@ import com.mongodb.client.model.Indexes;
 import com.mongodb.client.model.TextSearchOptions;
 import io.micrometer.core.instrument.LongTaskTimer;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+
+import static com.mongodb.client.model.Aggregates.match;
 
 
 @Component
@@ -44,6 +52,11 @@ public class MongoService {
     }
 
     public List<String> getAirBnbData() {
+        System.out.print("Fetching Air BnB Data");
+        return mongoTemplateAirBnb.findAll(String.class, "listingsAndReviews");
+    }
+
+    public List<String> getAirBnbDataFullTextSearch() {
         System.out.print("Fetching Air BnB Data");
         return mongoTemplateAirBnb.findAll(String.class, "listingsAndReviews");
     }
@@ -73,5 +86,28 @@ public class MongoService {
         Bson filter = Filters.text("John", options);
         personCollection.find(filter).forEach(doc->System.out.println(doc));
         return Lists.newArrayList();
+    }
+
+    public List<String> performFullTextSearchOnPersonCollection(String text) {
+       /* TextCriteria criteria = new TextCriteria().matchingAny(text);
+        Query query = TextQuery.queryText(criteria).sortByScore();
+        System.out.println(query.getQueryObject());     */
+
+        Arrays.asList(new Document("$search",
+                new Document("index", "string")
+                        .append("text",
+                                new Document("query", "string")
+                                        .append("path", "string"))));
+
+        List<Document> filterCriteria = Arrays.asList(new Document("$search",
+                new Document("index", "default")
+                        .append("text",
+                                new Document("query", text).append("path", new Document("wildcard","*"))
+                                        )));
+
+
+        MongoCollection personCollection =  mongoTemplate.getCollection("person");
+        personCollection.aggregate(filterCriteria).forEach(result->System.out.println(result));
+        return null;
     }
 }

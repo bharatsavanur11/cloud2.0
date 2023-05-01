@@ -1,5 +1,6 @@
 package com.example.business;
 
+import com.example.model.Person;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -69,10 +70,23 @@ public class MongoController {
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = Quote.class)))
             })
+    @GetMapping("/performTextSearch")
+    @ResponseBody
+    public List<String> performTextSearchOnPersonCollection(@RequestParam String textToBeSearched) throws InterruptedException {
+        return mongoService.fetchSearchTextData(textToBeSearched);
+    }
+
+    @Operation(summary = "Save the Quotes for Books", tags = {"Quotes",},
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "Returns the registered user",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Quote.class)))
+            })
     @GetMapping("/performFullTextSearch")
     @ResponseBody
     public List<String> performFullTextSearchOnPersonCollection(@RequestParam String textToBeSearched) throws InterruptedException {
-        return mongoService.fetchSearchTextData(textToBeSearched);
+        return mongoService.performFullTextSearchOnPersonCollection(textToBeSearched);
     }
 
 
