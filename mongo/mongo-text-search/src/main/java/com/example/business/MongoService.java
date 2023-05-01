@@ -89,16 +89,12 @@ public class MongoService {
     }
 
     public List<String> performFullTextSearchOnPersonCollection(String text) {
-       /* TextCriteria criteria = new TextCriteria().matchingAny(text);
-        Query query = TextQuery.queryText(criteria).sortByScore();
-        System.out.println(query.getQueryObject());     */
-
-        Arrays.asList(new Document("$search",
-                new Document("index", "string")
-                        .append("text",
-                                new Document("query", "string")
-                                        .append("path", "string"))));
-
+        // $search is the criteria used for querying the full text search and
+        // there is no known Spring Data template API that provides a full
+        // text search.
+        // We first have to create a search index on all the fields in the document
+        // then mention this specific index in document filter to
+        // use it. Underlying technology is Apache Lucene.
         List<Document> filterCriteria = Arrays.asList(new Document("$search",
                 new Document("index", "default")
                        .append("text",
