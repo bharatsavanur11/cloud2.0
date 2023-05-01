@@ -101,13 +101,16 @@ public class MongoService {
 
         List<Document> filterCriteria = Arrays.asList(new Document("$search",
                 new Document("index", "default")
-                        .append("text",
+                       .append("text",
                                 new Document("query", text).append("path", new Document("wildcard","*"))
                                         )));
 
 
         MongoCollection personCollection =  mongoTemplate.getCollection("person");
-        personCollection.aggregate(filterCriteria).forEach(result->System.out.println(result));
-        return null;
+        List<String> documents = Lists.newArrayList();
+        personCollection.aggregate(filterCriteria).forEach(result->{
+            documents.add(result.toString());
+        });
+    return documents;
     }
 }
