@@ -101,7 +101,6 @@ public class MongoService {
                                 new Document("query", text).append("path", new Document("wildcard","*"))
                                         )));
 
-
         MongoCollection personCollection =  mongoTemplate.getCollection("person");
         List<String> documents = Lists.newArrayList();
         personCollection.aggregate(filterCriteria).forEach(result->{
