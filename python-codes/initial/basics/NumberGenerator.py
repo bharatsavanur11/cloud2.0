@@ -1,6 +1,5 @@
-i = ['a','b','c']+[1,2,3]
+i = ['a', 'b', 'c'] + [1, 2, 3]
 print(i)
-
 
 
 # Custom Iterator

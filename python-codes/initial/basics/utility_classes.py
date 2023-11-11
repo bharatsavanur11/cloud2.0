@@ -24,6 +24,7 @@ class PersonService:
 
     def build_person_info(name, **attributes):
         result = name + '=='
+        value: object
         for key, value in attributes.items():
             result = result + key + str(value)
         return result

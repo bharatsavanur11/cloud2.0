@@ -93,7 +93,7 @@ public class MongoService {
         // there is no known Spring Data template API that provides a full
         // text search.
         // We first have to create a search index on all the fields in the document
-        // then mention this specific index in document filter to
+        // then mention this specific    index in document filter to
         // use it. Underlying technology is Apache Lucene.
         List<Document> filterCriteria = Arrays.asList(new Document("$search",
                 new Document("index", "default")
