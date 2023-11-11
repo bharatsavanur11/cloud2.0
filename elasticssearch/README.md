@@ -1,2 +1,1 @@
-# hazelcast-app
- Hazelcast POC Examples Tried Out with Detailed Comments. 
+# Elasticsearch Sample Applications
