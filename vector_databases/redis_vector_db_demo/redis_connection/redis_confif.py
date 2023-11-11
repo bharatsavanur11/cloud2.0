@@ -12,7 +12,7 @@ from redis.commands.search.field import (
 client = redis.Redis(
     host='redis-16718.c91.us-east-1-3.ec2.cloud.redislabs.com',
     port=16718,
-    password='wdJCw54hdbxYQroFVY5SJW5NgZzur1bD'
+    password=''
 )
 
 client.set('foo', 'bar')
