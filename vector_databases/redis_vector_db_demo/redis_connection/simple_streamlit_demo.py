@@ -22,10 +22,14 @@ except Exception as e:
 db = client.sample_mflix
 collection = db.movies
 
-df = pd.DataFrame(collection)
+df = pd.DataFrame()
+for doc in collection.find().limit(10):
+    pd.concat(doc)
 
-st.markdown(df)
 
+#df = pd.DataFrame(list(collection.find())
+
+st.dataframe(df, use_container_width=True)
 #for doc in collection.find():
  #   st.write(doc)
 
