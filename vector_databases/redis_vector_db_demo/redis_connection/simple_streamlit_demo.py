@@ -1,3 +1,5 @@
+from gettext import install
+
 import streamlit as st
 import pandas as pd
 
