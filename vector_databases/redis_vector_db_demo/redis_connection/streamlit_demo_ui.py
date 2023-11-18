@@ -14,9 +14,22 @@ def my_search():
             "plot": document["plot"]
         })
     df = pd.DataFrame(final_results)
-    st.table(df)
-    #st.dataframe(df, use_container_width=False)
+    # show_table(df)
+    return df
+    # st.dataframe(df, use_container_width=False)
 
+
+st.title("MongoDB Vector Search for Movies")
 
 search_text = st.text_input("Enter Search String", "")
-st.button("Search", on_click=my_search)
+searched = st.button("Search")
+# table_placeholder = st.container()
+if searched:
+    result_df = my_search()
+    st.table(result_df)
+
+
+def show_table(df):
+    with table_placeholder.container():
+        print("showing table")
+        table_placeholder.dataframe(df)
