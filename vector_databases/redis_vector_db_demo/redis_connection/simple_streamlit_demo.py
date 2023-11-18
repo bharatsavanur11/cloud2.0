@@ -22,7 +22,10 @@ except Exception as e:
 db = client.sample_mflix
 collection = db.movies
 
-#st.write("My first Stream Lit app")
-for doc in collection.find():
-    st.write(doc)
+df = pd.DataFrame(collection)
+
+st.markdown(df)
+
+#for doc in collection.find():
+ #   st.write(doc)
 
