@@ -44,8 +44,6 @@ results = collection.aggregate([
     }}
 ]);
 
-print
-
 for document in results:
     print(f'Movie Name: {document["title"]},\nMovie Plot: {document["plot"]}\n')
 
