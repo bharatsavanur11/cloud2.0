@@ -12,7 +12,7 @@ from redis.commands.search.field import (
 client = redis.Redis(
     host='redis-16718.c91.us-east-1-3.ec2.cloud.redislabs.com',
     port=16718,
-    password=''
+    password='wdJCw54hdbxYQroFVY5SJW5NgZzur1bD'
 )
 
 client.set('foo', 'bar')
@@ -75,7 +75,9 @@ schema = (
 )
 
 # Need to uncomment it when running it for the first time
-# When index was created.
+# When index was created. This is based on msmarco model which
+# can be replaced with any other model.
+
 #definition = IndexDefinition(prefix=["bikes:"], index_type=IndexType.JSON)
 #index_res = client.ft("idx:bikes_vss").create_index(
  #   fields=schema, definition=definition
@@ -107,15 +109,14 @@ encoded_queries = embedder.encode(queries)
 len(encoded_queries)
 print(len(encoded_queries))
 
-
+# Understand the query creation for Redis queries are run
+# try this using different model and different algorithm than kmeans
 query = (
     Query('(*)=>[KNN 3 @vector $query_vector as vector_score]')
     .sort_by('vector_score')
     .return_fields('vector_score', 'id', 'brand', 'model', 'description')
     .dialect(2)
 )
-
-
 def create_query_table(query, queries, encoded_queries, extra_params=None):
     if extra_params is None:
         extra_params = {}
@@ -147,6 +148,18 @@ def create_query_table(query, queries, encoded_queries, extra_params=None):
                     "description": doc.description,
                 }
             )
-    print(results_list)
+    queries_table = pd.DataFrame(results_list)
+    queries_table.sort_values(
+        by=["query", "score"], ascending=[True, False], inplace=True
+    )
+    queries_table["query"] = queries_table.groupby("query")["query"].transform(
+        lambda x: [x.iloc[0]] + [""] * (len(x) - 1)
+    )
+    queries_table["description"] = queries_table["description"].apply(
+        lambda x: (x[:497] + "...") if len(x) > 500 else x
+    )
+    queries_table.to_markdown(index=False)
+
+    print(queries_table)
 
 create_query_table(query, queries, encoded_queries)
