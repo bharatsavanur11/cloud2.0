@@ -23,4 +23,6 @@ db = client.sample_mflix
 collection = db.movies
 
 #st.write("My first Stream Lit app")
-st.write(collection)
+for doc in collection.find():
+    st.write(doc)
+
