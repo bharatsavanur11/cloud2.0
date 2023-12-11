@@ -42,7 +42,7 @@ results = collection.aggregate([
         "limit": 4,
         "index": "plot_vector_index",
     }}
-]);
+])
 
 for document in results:
     print(f'Movie Name: {document["title"]},\nMovie Plot: {document["plot"]}\n')

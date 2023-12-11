@@ -81,3 +81,5 @@ validators~=0.22.0
 mnist~=0.2.2
 filelock~=3.13.1
 sentencepiece~=0.1.99
+bardapi~=0.1.38
+GoogleBard
