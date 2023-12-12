@@ -1,19 +1,18 @@
-
-
-from pymongo.mongo_client import MongoClient
+from openai import OpenAI
+from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-import requests
 
 
 def getMongoClient():
     f =  open('api_key')
     lines = f.readlines()
     for line in lines:
-        #print(line)
-        tokens = line.split("=")
-        print(tokens[1].strip())
+        tokens = line.split("==")
         if tokens[0].strip() == 'mongo_url':
             uri = tokens[1].strip()
-            return uri
+            print(uri)
+            client = MongoClient(uri, server_api=ServerApi('1'))
 
-print(getMongoClient())
+    return client
+
+#print(getMongoClient())
