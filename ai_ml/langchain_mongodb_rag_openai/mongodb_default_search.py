@@ -36,7 +36,7 @@ def search(query):
     # st.dataframe(df, use_container_width=False)
     # for doc in collection.find():
     # st.write(doc)
-    # query = "imaginary characters from outer space at war"
+    # query  = "imaginary characters from outer space at war"
 
     results = collection.aggregate([
         {"$vectorSearch": {

@@ -24,7 +24,8 @@ def make_qna_chain(llm: LLM, vector_db: "RedisVDB", prompt: str = "", **kwargs):
     )
     return chain
 
-
+## We had to load docs as part of the job because getVectorstore without schema was failing
+## in the new app it will be changed to  new thing
 documents = load_docs()
 vector_db = get_vectorstore(documents)
 get_openai_client()
