@@ -24,6 +24,3 @@ def generate_content(prompt, model, temperature: 0.7, max_tokens: 400):
     )
     return completion.choices[0].text
 
-if __name__ == '__main__':
-
-    get_openai_client()
