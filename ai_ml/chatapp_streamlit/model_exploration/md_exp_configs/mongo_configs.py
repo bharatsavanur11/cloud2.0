@@ -21,6 +21,8 @@ file_path =  os.path.join(os.path.dirname(__file__), '..', 'md_exp_configs', 'ap
   }
 }
 
+As a part of this project, the knn index on the sample_analytics.transactions database has been indexed.
+
 '''
 def get_mongo_client():
     f =  open(file_path)
