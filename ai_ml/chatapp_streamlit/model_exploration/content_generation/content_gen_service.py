@@ -1,5 +1,6 @@
 from openai import OpenAI
 from md_exp_configs.openai_config import get_openai_client
+import os
 
 
 def generate_content(prompt, model, temperature: 0.7, max_tokens: 400):
@@ -22,3 +23,7 @@ def generate_content(prompt, model, temperature: 0.7, max_tokens: 400):
         presence_penalty=0
     )
     return completion.choices[0].text
+
+if __name__ == '__main__':
+
+    get_openai_client()

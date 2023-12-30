@@ -2,6 +2,8 @@ from openai import OpenAI
 import os
 
 
+file_path =  os.path.join(os.path.dirname(__file__), '..', 'md_exp_configs', 'api_key')
+
 def get_openai_client():
     """
     Retrieves the OpenAI client object.
@@ -17,7 +19,7 @@ def get_openai_client():
     os.environ["OPENAI_API_KEY"] = api_key
     return client
     """
-    f = open('/Users/bharatsavanur/Desktop/projects/personal_git_2/ai_ml/chatapp_streamlit/model_exploration/api_key')
+    f = open(file_path)
     lines = f.readlines()
     for line in lines:
         tokens = line.split("==")
@@ -28,7 +30,7 @@ def get_openai_client():
 
 
 def get_openai_key():
-    f = open('./model_exploration/api_key')
+    f = open(file_path)
     lines = f.readlines()
     for line in lines:
         tokens = line.split("==")
