@@ -1,14 +1,19 @@
 import requests
 
-API_URL =API_URL = "https://api-inference.huggingface.co/models/marcus2000/TextRank_Longformer"
+API_URL = API_URL = "https://api-inference.huggingface.co/models/marcus2000/TextRank_Longformer"
 headers = {"Authorization": "Bearer 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"}
+
 
 def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 
 
-prompt = """
+### We need to generate few shot prompting techniques  from existing test data. This is different from
+## instruction fine tuning of all the data.
+prompt = ""
+
+"""
 Please generate a summary based on below revenue data:
 
 | Product         | Year_2023 | Year_2022 | Year_2021 | Year_2020 |
@@ -24,7 +29,7 @@ Summary:
 
 """
 
-prompt+="""
+prompt += """
 Please generate a summary based on below revenue data:
 
 | Product         | Year_2023 | Year_2022 | Year_2021 | Year_2020 |

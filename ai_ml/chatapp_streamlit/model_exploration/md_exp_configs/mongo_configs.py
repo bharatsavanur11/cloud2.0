@@ -1,7 +1,7 @@
-from openai import OpenAI
+import os
+
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-import os
 
 file_path =  os.path.join(os.path.dirname(__file__), '..', 'md_exp_configs', 'api_key')
 '''
