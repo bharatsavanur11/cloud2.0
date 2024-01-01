@@ -26,12 +26,18 @@ def main():
     if task_type == "Summarization Task":
         with data:
             st.write("Summarization Task")
-        applicable_models = st.sidebar.selectbox("Please select Model Type", ["GPT 2", "GPT 3", "FLAN T5"],
-                                                 key="selected_model")
-        if applicable_models:
-            if len(applicable_models) > 0:
-                temperature = st.sidebar.slider("Select Temperature", 0.0, 1.0, 0.5, key="selected_temperature",
-                                                on_change=on_slider_change)
+        st.session_state.response_label = ''
+        st.session_state.response_data = ''
+        data.text_area("Enter the text for which you want to generate content", key="selected_text")
+        st.sidebar.selectbox("Please select Model Type",
+                             ["gpt-3.5-turbo-instruct", "babbage-002", "davinci-002"],
+                             key="selected_model")
+        st.sidebar.text_input("Max Token", key="selected_token")
+        st.sidebar.slider("Select Temperature", 0.0, 1.0, 0.5, key="selected_temperature", on_change=on_slider_change)
+        data.button("Summarize Text", key="click_data", on_click=generate_summary())
+        st.write(st.session_state.response_label)
+        st.write(st.session_state.response_data)
+
     if task_type == "Generate Content":
         data.write("Generate Content")
         st.session_state.response_label = ''
@@ -66,6 +72,15 @@ def generate_content():
                                                                             st.session_state.selected_model,
                                                                             st.session_state.selected_temperature,
                                                                             st.session_state.selected_token))
+
+def generate_summary():
+    with output_container:
+        if st.session_state.selected_text and st.session_state.selected_model:
+            st.session_state.response_label = "Open AI Replied: "
+            st.session_state.response_data = (content_gen_service.generate_content(st.session_state.selected_text,
+                                                                                   st.session_state.selected_model,
+                                                                                   st.session_state.selected_temperature,
+                                                                                   st.session_state.selected_token))
 
 
 if __name__ == "__main__":
