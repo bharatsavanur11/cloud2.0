@@ -84,7 +84,7 @@ text_vector_db = TextVectorDatabase()
 text_vector_db.add_document("doc1", "This is an example document about natural language processing.")
 text_vector_db.add_document("doc2", "Machine learning algorithms play a crucial role in NLP applications.")
 text_vector_db.add_document("doc3", "Text vectorization is important understanding Natural Language Processing.")
-text_vector_db.add_document("doc4", "Learn, understand natural language processing  skills.")
+text_vector_db.add_document("doc4", "This is an another  example document about natural language processing")
 
 # Search for similar documents
 query_text = "I want to understand more about natural language processing."
@@ -102,8 +102,8 @@ vector_data = [text_vector_db.text_to_vector(text) for text in text_vector_db.do
 vector_data = np.array(vector_data).astype('float32')
 
 ## Adding it in Faiss Index
-print(vector_data.shape)
-print(vector_data)
+#print(vector_data.shape)
+#print(vector_data)
 
 # Initialize the FAISS index
 index = faiss.IndexFlatL2(vector_data.shape[1])  # L2 norm (Euclidean distance) for similarity
@@ -116,12 +116,12 @@ query_text = "I want to understand more about natural language processing."
 query_vector = text_vector_db.text_to_vector(query_text).reshape(1, -1).astype('float32')
 
 # Perform similarity search
-k = 2  # Number of nearest neighbors to retrieve
+k = 4  # Number of nearest neighbors to retrieve
 distances, indices = index.search(query_vector, k)
-
+print(distances)
 
 # Display results
 print("Query Text:", query_text)
 for i, idx in enumerate(indices[0]):
-    print(i,idx)
+    #print(i,idx)
     print(f"Neighbor: {text_vector_db.docs_by_index[idx]} - Distance: {distances[0][idx]}")

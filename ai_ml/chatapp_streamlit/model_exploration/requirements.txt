@@ -18,3 +18,4 @@ openai
 pandas
 pymongo
 tensorflow
+unstructured
