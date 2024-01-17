@@ -1,6 +1,5 @@
-from openai import OpenAI
 from md_exp_configs.openai_config import get_openai_client
-import os
+from rag.mongo_db.langchain_operations import search_using_langchain,query_data
 
 
 def generate_content(prompt, model, temperature: 0.7, max_tokens: 400):
@@ -24,3 +23,8 @@ def generate_content(prompt, model, temperature: 0.7, max_tokens: 400):
     )
     return completion.choices[0].text
 
+
+def generate_rag_based_content(selected_text, model, temperature, token:400):
+    semantic_search_results,open_ai_search_result = query_data(selected_text)
+
+    return open_ai_search_result

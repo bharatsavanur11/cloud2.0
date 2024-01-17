@@ -12,8 +12,7 @@ with parent_container:
 # Main function
 
 
-def generate_rag_based_answer():
-    pass
+
 
 
 def main():
@@ -101,6 +100,17 @@ def generate_summary():
                                                                                    st.session_state.selected_model,
                                                                                    st.session_state.selected_temperature,
                                                                                    st.session_state.selected_token))
+
+def generate_rag_based_answer():
+    with output_container:
+        if st.session_state.selected_text and st.session_state.selected_model:
+            st.session_state.response_label = "Context Based Reply from Open AI:"
+            st.session_state.response_data = content_gen_service.generate_rag_based_content(st.session_state.selected_text,
+                                                                                           st.session_state.selected_model,
+                                                                                           st.session_state.selected_temperature,
+                                                                                           st.session_state.selected_token
+
+                                                                                           )
 
 
 if __name__ == "__main__":
