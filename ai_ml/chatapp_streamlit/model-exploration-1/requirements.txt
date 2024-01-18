@@ -21,3 +21,4 @@ tiktoken
 langchain-community
 spacy
 nltk
+langchain
